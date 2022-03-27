@@ -13,4 +13,3 @@ public record Vacunacion(LocalDate fecha, String comunidad,
 	}
 
 }
-//el orden natural y los comentarios

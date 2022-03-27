@@ -17,16 +17,25 @@ public record Paciente(Persona Persona, String codigoIngreso,
 	
 	
 	private String formatearFecha(LocalDateTime fechaHoraIngreso) {
-		String res= fechaHoraIngreso.format(DateTimeFormatter.ofPattern("dd-MM-yy"));
+		String res= fechaHoraIngreso.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		return res;
 	}
 	private String formatearHora(LocalDateTime fechaHoraIngreso) {
-		String res= fechaHoraIngreso.format(DateTimeFormatter.ofPattern("HH-mm"));
+		String res= fechaHoraIngreso.format(DateTimeFormatter.ofPattern("HH:mm"));
 		return res;
 	}
-	private Persona persona(){
-		return
-	}
+	
+	public static Paciente of (String nombre, String apellidos, String dni, LocalDate fechaNacimiento, String codigoIngreso, LocalDateTime fechaHoraIngreso) {
+        Persona persona = Persona.of(nombre, apellidos, dni, fechaNacimiento);
+        Paciente res = new Paciente(persona, codigoIngreso, fechaHoraIngreso);
+        return res;
+    }
+	public static Paciente of (Persona persona, String codigoIngreso, LocalDateTime fechaHoraIngreso) {
+        Paciente res = new Paciente(persona, codigoIngreso, fechaHoraIngreso);
+        return res;
+    }
+		
+
+	
 
 }
-//los comentarios y tengo mal las derivadas

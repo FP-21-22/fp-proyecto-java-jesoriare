@@ -1,12 +1,11 @@
 package fp.clinico.test;
-
-import fp.clinico.Persona;
+import fp.clinico.*;
 
 public class TestPersona {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Persona p1= new Persona("Juan", "García Rodríguez", "12755078Z", "20/03/1965");
+		Persona p1= Persona.parse("Juan, Garcia Rodriguez, 12755078Z, 20/03/1965");
 		System.out.println("La persona es:", p1);
 
 	}

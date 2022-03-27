@@ -1,5 +1,5 @@
 # Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  21/22)
-Autor/a: \<nombre del autor\>   uvus:\<uvus del autor\>
+Autor/a: Jesús Oria Arenas   uvus:jesoriare
 
 
 
@@ -9,7 +9,7 @@ Autor/a: \<nombre del autor\>   uvus:\<uvus del autor\>
   * **fp.clinico**: Paquete que contiene los records Paciciente, PacienteEstudio, Persona y el Enum TipoResidencia.
   * **fp.clinico.test**: Paquete que contiene las clases de test del las clases del paquete fp.clinico.
   * **fp.farmaceutico**: Paquete que contiene la clase medicamento y un Enum TipoMedicamento.
-  * **fp.clinico.test**: Paquete que contiene las clases de test del las clases del paquete fp.farmaceutico.
+  * **fp.farmaceutico.test**: Paquete que contiene las clases de test del las clases del paquete fp.farmaceutico.
   * **fp.vacunas**: Paquete que contiene los records Vacunacion.
   * **fp.vacunacion.test**: Paquete que contiene las clases de test del las clases del paquete fp.vacunas.
   * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
@@ -18,7 +18,7 @@ Autor/a: \<nombre del autor\>   uvus:\<uvus del autor\>
 
 ## Clases implementadas
 
-Tipo Record Paciente, PacienteEstudio, Persona, Vacunacino y la clase Medicamento
+Tipo Record: Paciente, PacienteEstudio, Persona, Vacunacino. Tipo clase: Medicamento
 
 ### Record Persona
 

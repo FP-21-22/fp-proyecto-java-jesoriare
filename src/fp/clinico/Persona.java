@@ -12,14 +12,28 @@ public record Persona(String nombre, String apellidos,
 	
 	public Persona{
 		Checkers.check("La fecha de nacimiento debe ser anterior a la fecha actual", fechaNacimiento.isAfter(LocalDate.now()));
-		Checkers.check("El dni debe ser una cadena con ocho dígitos y seguidos de una letra.", dni.length()==9);
+		Checkers.check("El dni debe ser una cadena con ocho dï¿½gitos y seguidos de una letra.", dni.length()==9);
 
 	}
 	
 	public Integer getEdad() {
 		return fechaNacimiento.until(LocalDate.now()).getYears();
 	}
-	//poner bien el dni y los comenrarios poner
+	
+	public static Persona of(String nombre, String apellidos,
+		String dni, LocalDate fechaNacimiento) {
+		Persona res= new Persona(nombre, apellidos, dni, fechaNacimiento);
+		return res;
+	}
+	public static Persona parse(String cadena) {
+		String[] cad = cadena.split(",");
+		String nombre= cad[0].trim();
+		String apellidos= cad[1].trim();
+		String dni= cad[2].trim();
+		LocalDate fechaNacimiento = LocalDate.parse(cad[3].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return new Persona(nombre, appelidos, dni, fechaNacimiento);
+	}
+
 	
 	
 	
