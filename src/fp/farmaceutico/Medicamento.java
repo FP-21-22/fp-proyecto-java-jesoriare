@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import fp.utiles.Checkers;
 
-public class Medicamento {
+public class Medicamento implements Comparable<Medicamento> {
 	private String nombreMedicamento;
 	private TipoMedicamento tipoMedicamento;
 	private String codigoEnfermedad;
@@ -22,13 +22,22 @@ public class Medicamento {
 		this.puntuacion = puntuacion;
 		this.indiceSomatico = indiceSomatico;
 		this.fechaCatalogo = fechaCatalogo;
-		Checkers.check("La puntación tiene que ser mayor estricta que cero", puntuacion<=0);
-		Checkers.check("El índice somático tiene que ser mayor o igual que 1000", indiceSomatico<1000);
-		Checkers.check("La fecha de catálogo tiene que ser posterior al 01/01/2015",fechaCatalogo.isBefore(LocalDate.of(2015, 1, 1)));
+		Checkers.check("La puntaciï¿½n tiene que ser mayor estricta que cero", puntuacion<=0);
+		Checkers.check("El indice somï¿½tico tiene que ser mayor o igual que 1000", indiceSomatico<1000);
+		Checkers.check("La fecha de catï¿½logo tiene que ser posterior al 01/01/2015",fechaCatalogo.isBefore(LocalDate.of(2015, 1, 1)));
 	
 	
 	
 	}
+	
+	
+	public Medicamento(String nombreMedicamento, String farmaceutica) {
+		super();
+		this.nombreMedicamento = nombreMedicamento;
+		this.farmaceutica = farmaceutica;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Medicamento [nombreMedicamento=" + nombreMedicamento + ", farmaceutica=" + farmaceutica + "]";
@@ -36,44 +45,33 @@ public class Medicamento {
 	public String getNombreMedicamento() {
 		return nombreMedicamento;
 	}
-	public void setNombreMedicamento(String nombreMedicamento) {
-		this.nombreMedicamento = nombreMedicamento;
-	}
+	
 	public TipoMedicamento getTipoMedicamento() {
 		return tipoMedicamento;
 	}
-	public void setTipoMedicamento(TipoMedicamento tipoMedicamento) {
-		this.tipoMedicamento = tipoMedicamento;
-	}
+	
 	public String getCodigoEnfermedad() {
 		return codigoEnfermedad;
 	}
-	public void setCodigoEnfermedad(String codigoEnfermedad) {
-		this.codigoEnfermedad = codigoEnfermedad;
-	}
+	
 	public String getFarmaceutica() {
 		return farmaceutica;
 	}
-	public void setFarmaceutica(String farmaceutica) {
-		this.farmaceutica = farmaceutica;
-	}
+	
 	public Double getPuntuacion() {
 		return puntuacion;
 	}
-	public void setPuntuacion(Double puntuacion) {
-		this.puntuacion = puntuacion;
-	}
+	
 	public Integer getIndiceSomatico() {
 		return indiceSomatico;
 	}
-	public void setIndiceSomatico(Integer indiceSomatico) {
-		this.indiceSomatico = indiceSomatico;
-	}
+	
 	public LocalDate getFechaCatalogo() {
 		return fechaCatalogo;
 	}
 	public void setFechaCatalogo(LocalDate fechaCatalogo) {
 		this.fechaCatalogo = fechaCatalogo;
+		Checkers.check("La fecha de catï¿½logo tiene que ser posterior al 01/01/2015",fechaCatalogo.isBefore(LocalDate.of(2015, 1, 1)));
 	}
 	@Override
 	public int hashCode() {
@@ -104,8 +102,16 @@ public class Medicamento {
 			return false;
 		return true;
 	}
+	public int compareTo(Medicamento o) {
+		
+		Integer res=nombreMedicamento.compareTo(o.nombreMedicamento);
+		if(res==0) {
+			res=farmaceutica.compareTo(o.farmaceutica);
+		}
+		return res;
+	}
 	
-	//orden natural me falta
+	
 	
 	
 }
