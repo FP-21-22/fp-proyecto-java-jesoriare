@@ -1,100 +1,137 @@
-# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  \<XX\>/\<YY\>)
+# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  21/22)
 Autor/a: \<nombre del autor\>   uvus:\<uvus del autor\>
 
-Aquí debes añadir la descripción del dataset y un enunciado del dominio del proyecto.
 
 
 ## Estructura de las carpetas del proyecto
 
 * **/src**: Contiene los diferentes archivos que forman parte del proyecto. Debe estar estructurado en los siguentes paquetes
-  * **fp.\<dominio\>**: Paquete que contiene los tipos del proyecto.
-  * **fp.\<dominio\>.test**: Paquete que contiene las clases de test del proyecto.
-  * **fp.common**: Paquete que contiene los tipos auxiliares del proyecto
+  * **fp.clinico**: Paquete que contiene los records Paciciente, PacienteEstudio, Persona y el Enum TipoResidencia.
+  * **fp.clinico.test**: Paquete que contiene las clases de test del las clases del paquete fp.clinico.
+  * **fp.farmaceutico**: Paquete que contiene la clase medicamento y un Enum TipoMedicamento.
+  * **fp.clinico.test**: Paquete que contiene las clases de test del las clases del paquete fp.farmaceutico.
+  * **fp.vacunas**: Paquete que contiene los records Vacunacion.
+  * **fp.vacunacion.test**: Paquete que contiene las clases de test del las clases del paquete fp.vacunas.
   * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
-* **/data**: Contiene el dataset o datasets del proyecto
-    * **\<dataset1.csv\>**: Añade una descripción genérica del dataset.
-    * **\<dataset2.csv\>**: Añade una descripción del resto de datasets que puedas tener.
-    
-## Estructura del *dataset*
 
-Aquí debes describir la estructura del dataset explicando qué representan los datos que contiene y la descripción de cada una de las columnas. Incluye también la URL del dataset original.
 
-El dataset está compuesto por \<N\> columnas, con la siguiente descripción:
 
-* **\<columna 1>**: de tipo \<tipo\>, representa....
-* **\<columna 2>**: de tipo \<tipo\>, representa....
-....
+## Clases implementadas
 
-## Tipos implementados
+Tipo Record Paciente, PacienteEstudio, Persona, Vacunacino y la clase Medicamento
 
-Describe aquí los tipos que usas en tu proyecto.
+### Record Persona
 
-### Tipo Base
-Descripción breve del tipo base.
 
 **Propiedades**:
 
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
-- ...
-- 
-**Constructores**: 
-
-- C1: Descripción del constructor 1.
-- C2: Descripción del constructor 2.
-- ...
+- nombre, de tipo String, consultable y modificable. 
+- apellidos, de tipo String, consultable y modificable. 
+- dni, de tipo String, consultable y modificable. 
+- fechaNacimiento, de tipo LocalDate, consultable y modificable. 
+- edad, de tipo Integer, propiedad derivada. 
 
 **Restricciones**:
  
-- R1: Descripción de la restricción 1.
-- R2: Descripción de la restricción 2.
-- ...
+- R1: La fecha de nacimiento debe ser anterior a la fecha actual. 
+- R2: El dni debe ser una cadena con ocho dígitos y seguidos de una letra. 
+
 - 
-**Criterio de igualdad**: Describir el criterio de igualdad
+**Criterio de igualdad**: por defecto asociado al record.
+**Representación como cadena**: por defecto asociado al record.
+**Orden natural**: por dni. 
 
-**Criterio de ordenación**: Describir el criterio de ordenación (si lo hay).
+### Record Paciente
 
-**Otras operaciones**:
- 
--	_método 1_: Descripción del método 1.
-- ...
-
-#### Tipos auxiliares
-Descripción de los tipos auxiliares que sean necesarios añadir al proyecto.
-
-### Factoría
-Descripción breve de la factoría.
-
-- _método 1_: Descripción del método 1.
--	_método 2_: Descripción del método 2.
-
-### Tipo Contenedor
-
-Descripción breve del tipo contenedor.
 
 **Propiedades**:
 
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
-- ...
-- 
-**Constructores**: 
-
-- C1: Descripción del constructor 1.
-- C2: Descripción del constructor 2.
-- ...
+- persona, de tipo Persona.
+- codigoIngreso, de tipo String, consultable y modificable. 
+- fecha y hora de ingreso, de tipo LocalDate, consultable y modificable. 
+- fechaIngreso, de tipo LocalDate, propiedad derivada. 
+- horaIngreso, de tipo LocalDate, propiedad derivada. 
 
 **Restricciones**:
  
-- R1: Descripción de la restricción 1.
-- R2: Descripción de la restricción 2.
-- ...
+- R1: La fecha y hora de ingreso debe ser anterior o igual a la fecha actual
+
 - 
-**Criterio de igualdad**: Describir el criterio de igualdad
+**Criterio de igualdad**: por defecto asociado al record.
+**Representación como cadena**: por defecto asociado al record.
 
-**Criterio de ordenación**: Describir el criterio de ordenación (si lo hay).
 
-**Otras operaciones**:
+### Record PacienteEstudio
+
+
+**Propiedades**:
+
+- id, de tipo String, consultable y modificable.
+- genero, de tipo String, consultable y modificable. 
+- edad, de tipo Double, consultable y modificable. 
+- hipertension, de tipo Boolean, consultable y modificablea. 
+- enfermedad de corazón, de tipo Boolean, consultable y modificable.
+- tipo de residencia, enumerado TipoResidencia.
+- Factor de riesgo, de tipo Boolean, propiedad derivada. 
+
+**Restricciones**:
  
--	_método 1_: Descripción del método 1.
-- ...
+- R1: La edad tiene que ser mayor o igual que cero y menor o igual que 130. 
+- R2: El nivel medio de glucosa tiene que ser mayor o igual que cero. 
+
+- 
+**Criterio de igualdad**: por defecto asociado al record.
+**Representación como cadena**: informa del id y la edad del paciente.
+**Criterio de orden**: según la edad y el id. 
+
+
+### Record Vacunacion
+
+
+**Propiedades**:
+
+- fecha, de tipo LocalDate, consultable y modificable.
+- comunidad, de tipo String, consultable y modificable. 
+- pfizer, de tipo Integer, consultable y modificable. 
+- moderna, de tipo Integer, consultable y modificable. 
+- janssenn, de tipo Integer, consultable y modificable.
+- numero personas, de tipo Integer, propiedad consultable y modificable.
+- Numero total, de tipo Integer, propiedad derivada. 
+
+**Restricciones**:
+ 
+- R1:La fecha de debe ser posterior al 01/02/2021
+
+
+- 
+**Criterio de igualdad**: por defecto asociado al record.
+**Representación como cadena**: por defecto asociado al record.
+**Criterio de orden**: por comunidad y en caso de igualdad por fecha. 
+
+
+### Clase Medicamento
+
+
+**Propiedades**:
+
+- nombre del medicamento, de tipo String, consultable y modificable.
+- tipo de medicamento, enumerado de tipo TipoMedicamento, observable
+- código de la enfermedad, de tipo String, observable. 
+- farmacéutica, de tipo String, observable.
+- puntación, de tipo Double, observable.
+- índice somático, de tipo Integer, observable.
+- fecha de catálogo, de tipo LocalDate, observable y modificable.
+- tratar enfermedad, de tipo Boolean. (Derivada, siendo cierta si el código de la
+enfermedad coincide con un parámetro de tipo cadena que reciben como argumento
+la propiedad)
+
+**Restricciones**:
+ 
+- R1: La puntación tiene que ser mayor estricta que cero.
+- R2: El índice somático tiene que ser mayor o igual que 1000.
+- R3: La fecha de catálogo tiene que ser posterior al 01/01/2015
+
+- 
+**Representación como cadena**: según el nombre del medicamento y de la farmacéutica.
+**Criterio de igualdad**: por nombre del medicamento y farmacéutica.
+**Orden natural**: por nombre del medicamento y en caso de igualdad por la farmacéutica. 
