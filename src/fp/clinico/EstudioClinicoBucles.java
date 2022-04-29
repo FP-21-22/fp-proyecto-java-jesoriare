@@ -9,47 +9,57 @@ import java.util.List;
 import java.util.Map;
 
 public class EstudioClinicoBucles implements EstudioClinico {
+	List<PacienteEstudio> ls;
+
+
+	public EstudioClinicoBucles(List<PacienteEstudio> leeFichero) {
+		// TODO Auto-generated constructor stub
+		ls = new ArrayList<>();
+	}
 
 	@Override
 	public Integer numeroPacientes() {
 		// TODO Auto-generated method stub
-		return null;
+		Integer res;
+		res= ls.size();
+		return res;
 	}
 
 	@Override
 	public void incluyePaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
+		this.ls.add(paciente);
 
 	}
 
 	@Override
 	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
-		// TODO Auto-generated method stub
+		//this.ls.add(pacientes);
 
 	}
 
 	@Override
 	public void eliminaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
+		this.ls.remove(paciente);
 
 	}
 
 	@Override
 	public Boolean estaPaciente(PacienteEstudio paciente) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.ls.contains(paciente);
 	}
 
 	@Override
 	public void borraEstudio() {
 		// TODO Auto-generated method stub
+		this.ls.clear();
 
 	}
 
 	@Override
 	public EstudioClinico of(String nombreFichero) {
 		// TODO Auto-generated method stub
-		return null;
+		return new EstudioClinicoBucles(this.leeFichero(nombreFichero));
 	}
 
 	@Override
