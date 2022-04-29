@@ -1,5 +1,7 @@
 package fp.clinico.test;
 
+import fp.clinico.PacienteEstudio;
+
 public class TestPacienteEstudio {
 
 	public static void main(String[] args) {

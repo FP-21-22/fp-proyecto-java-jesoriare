@@ -1,7 +1,6 @@
 package fp.farmaceutico;
 
 import java.time.LocalDate;
-
 import fp.utiles.Checkers;
 
 public class Medicamento implements Comparable<Medicamento> {
@@ -22,12 +21,21 @@ public class Medicamento implements Comparable<Medicamento> {
 		this.puntuacion = puntuacion;
 		this.indiceSomatico = indiceSomatico;
 		this.fechaCatalogo = fechaCatalogo;
-		Checkers.check("La puntaci�n tiene que ser mayor estricta que cero", puntuacion<=0);
-		Checkers.check("El indice som�tico tiene que ser mayor o igual que 1000", indiceSomatico<1000);
-		Checkers.check("La fecha de cat�logo tiene que ser posterior al 01/01/2015",fechaCatalogo.isBefore(LocalDate.of(2015, 1, 1)));
+		Checkers.check("La puntacion tiene que ser mayor estricta que cero", puntuacion>=0);
+		Checkers.check("El indice somatico tiene que ser mayor o igual que 1000", indiceSomatico>=1000);
+		Checkers.check("La fecha de catalogo tiene que ser posterior al 01/01/2015",fechaCatalogo.isAfter(LocalDate.of(2015, 1, 1)));
 	
 	
 	
+	}
+
+	public Boolean tratarEnfermedad(String codigoIntroducido) {
+		boolean res = false;
+		if (codigoEnfermedad.equals(codigoIntroducido))
+			res = true;
+		else if(!codigoEnfermedad.equals(codigoIntroducido))
+			res = false;
+		return res;
 	}
 	
 	
