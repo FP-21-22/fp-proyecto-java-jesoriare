@@ -11,6 +11,9 @@ public record Vacunacion(LocalDate fecha, String comunidad,
 	public Vacunacion{
 		Checkers.check("La fecha debe ser posterior al 01/01/20021", fecha.isAfter(LocalDate.of(2021, 01, 01)));
 	}
+	public Integer getNumeroTotal() {
+		return pfizer+moderna+astrazeneca;
+	}
 	
 	public static Vacunacion parsee(String cadena) {
 		String[] cad = cadena.split(";");

@@ -1,5 +1,9 @@
 package fp.clinico;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +30,59 @@ public class EstudioClinicoStream {
 	}
 	
 	//operaciones stream
+	public Integer numeroPacientes() {
+		// TODO Auto-generated method stub
+		Integer res;
+		res= ecs.size();
+		return res;
+	}
+
+	public void incluyePaciente(PacienteEstudio paciente) {
+		this.ecs.add(paciente);
+
+	}
+
+	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
+		//this.ls.add(pacientes);
+
+	}
+
+	public void eliminaPaciente(PacienteEstudio paciente) {
+		this.ecs.remove(paciente);
+
+	}
+
+	public Boolean estaPaciente(PacienteEstudio paciente) {
+		// TODO Auto-generated method stub
+		return this.ecs.contains(paciente);
+	}
+
+	public void borraEstudio() {
+		// TODO Auto-generated method stub
+		this.ecs.clear();
+
+	}
+
+	public EstudioClinico of(String nombreFichero) {
+		// TODO Auto-generated method stub
+		return new EstudioClinicoBucles(this.leeFichero(nombreFichero));
+	}
+
+	public List<PacienteEstudio> leeFichero(String nombreFichero) {
+		//
+		List<PacienteEstudio> res = new ArrayList<PacienteEstudio>();		
+		List<String> aux = null;
+		try {
+			aux = Files.readAllLines(Paths.get(nombreFichero));
+			for(String e:aux) {
+				PacienteEstudio p = PacienteEstudio.parse(e);
+				res.add(p);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
 	public Boolean todosPacienteSonDelTipo(TipoResidencia tipo) {
 		return ecs.stream()
