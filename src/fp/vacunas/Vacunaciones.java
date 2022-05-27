@@ -45,22 +45,22 @@ public class Vacunaciones {
 					.anyMatch(x->x.comunidad().equals(comunidad) && n<x.numPersonas());
 		}
 		
-//		public LocalDate diaMasVacunacionesEn(String comunidad) {
-//			return vacunaciones.stream()
-//					.filter(x->x.comunidad().equals(comunidad))
-//					.sorted(Comparator.comparing(Vacunacion::fecha))
-//					.limit(1);
-//		}
+		public LocalDate diaMasVacunacionesEn(String comunidad) {
+			return vacunaciones.stream()
+					.filter(x->x.comunidad().equals(comunidad))
+					.max(Comparator.comparing(Vacunacion::numPersonas))
+					.get()
+					.fecha();
+		}
 		
 		public Map<LocalDate, List<Vacunacion>>vacunacionesPorFecha(){
 			return vacunaciones.stream()
 					.collect(Collectors.groupingBy(Vacunacion::fecha));
 		}
 		
-		public Map<String, Integer>maximoNumTotalVacunasPorComunidad() {
-			return vacunaciones.stream()
-					.collect(Collectors.groupingBy(Vacunacion::comunidad, Comparator.comparing(Vacunacion::getNumeroTotal)));
-			
-		}
+//		public Map<String, Integer>maximoNumTotalVacunasPorComunidad() {
+//			return vacunaciones.stream()
+//					.collect(Collectors.groupingBy(Vacunacion::comunidad, Collectors.collectingAndThen(Collectors.toList(), Collectors.counting())));	
+//		}
 		
 }

@@ -2,6 +2,7 @@ package fp.vacunas;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import fp.utiles.Checkers;
 
 public record Vacunacion(LocalDate fecha, String comunidad,
@@ -13,6 +14,14 @@ public record Vacunacion(LocalDate fecha, String comunidad,
 	}
 	public Integer getNumeroTotal() {
 		return pfizer+moderna+astrazeneca;
+	}
+	public int compareTo(Vacunacion o) {
+		// 
+		Integer res = this.comunidad().compareTo(o.comunidad());
+		if(res == 0) {
+			res = this.fecha().compareTo(o.fecha());
+		}		
+		return res;
 	}
 	
 	public static Vacunacion parsee(String cadena) {

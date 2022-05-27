@@ -47,10 +47,13 @@ public class ListadoMedicamentos {
 		return medicamentos.stream()
 				.collect(Collectors.groupingBy(Medicamento::getTipoMedicamento, Collectors.averagingDouble(x->x.getPuntuacion())));
 	}
-//	public LocalDate fechaCatalogoMasFrecuente() {
-//		return medicamentos.stream()
-//				.collect(Collectors.groupingBy(Medicamento::getFechaCatalogo, Collectors.counting()))
-//				.;
-//	}
+	public LocalDate fechaCatalogoMasFrecuente() {
+		Map<LocalDate, Long> aux = this.medicamentos.stream()
+				.collect(Collectors.groupingBy(Medicamento::getFechaCatalogo, Collectors.counting()));
+		return aux.entrySet().stream()
+				.max(Comparator.comparing(x->x.getValue()))
+				.get()
+				.getKey();
+	}
 
 }

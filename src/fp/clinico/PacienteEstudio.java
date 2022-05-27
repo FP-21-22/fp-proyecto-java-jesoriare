@@ -1,5 +1,6 @@
 package fp.clinico;
 
+
 import fp.utiles.Checkers;
 
 public record PacienteEstudio(String id, String genero, 
@@ -19,6 +20,15 @@ public record PacienteEstudio(String id, String genero,
 		Checkers.check("La edad tiene que ser mayor o igual que cero y menor o igual que 130", edad>=0 && edad<=130);
 		Checkers.check("El nivel medio de glucosa tiene que ser mayor o igual que cero", nivelGlucosa>0);
 	}
+	public int compareTo(PacienteEstudio o) {
+		// 
+		Integer res = this.edad().compareTo(o.edad());
+		if(res == 0) {
+			res = this.id().compareTo(o.id());
+		}		
+		return res;
+	}
+	
 	public static PacienteEstudio of(String id, String genero, 
 			Double edad, Boolean hipertension, Boolean enfermedadCorazon, 
 			TipoResidencia tipoResidencia, Double nivelGlucosa) {
